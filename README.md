@@ -23,12 +23,12 @@ Marti Walstad and Alaina Edwards
     *  Show which majors have best / worst placement results in terms of salary levels
 4. Add pains.  What are the pains before, during, and after your client is trying to get their jobs done?  Create a bullet point for every specific pain.
     *  Before:
-        *  Students not filling out survey to get information
+        *  Client stated students not filling out survey to get information was a pain. 
     * During:
         * Inputation errors -- missing variables (average salaries: student adding salary to survey vs external relations have to find salary online)
     * After:
-        *  Not having enough support and evidence to back up brand management claims
-        * Lacking information to recruit prospective students into certain FSB
+        *  Not having enough support and evidence to back up brand management claims (Top 10 ranking for ROI)
+        * Lacking information to best recruit prospective students into certain FSB programs
 5. Describe your intended solution.  Give a bullet point for each major element of your product or solution.
       * Our intended solution is a dashboard showing statistics with FSB majors best / worst placements, specifically percentages and salary levels.
       *  Using Student Success data from 2019-2021
