@@ -36,7 +36,7 @@ Marti Walstad and Alaina Edwards
       *  Give statistics to be used in marketing that will be appealing to future prospective students about FSB majors
 6. What are the pain killers from your solution? You should be able to map a pain killer to a client pain.
     *  Using national averages and public data to input missing salary values
-    *  Imrpove prospective student recruitment
+    *  Improve prospective student recruitment
     *  Using salary statistics to back up our Top 10 ranking for ROI claim
     *  Having the data avaliable to support any other brand management claims
 7. Add gains.  What else might your solution deliver that will surprise or benefit your client above and beyond simply killing their pain?
