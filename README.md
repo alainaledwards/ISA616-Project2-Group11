@@ -1,6 +1,9 @@
 # Overview of the Repository
 
-The purpose of this repository is to interact with GitHub to access the files for our second project in ISA 616.  Below, I also include details about GitHub to help you in working in this environment.
+The purpose of this repository is to interact with GitHub to access the files for our second project in ISA 616. 
+
+## Data Insight Question
+We will explore what majors have the best/worst placement results in terms of percentages and salary levels. This question was given to us by Mr. Kirk Bogard to inform him in his role in Development and External Relations.
 
 ## Contributors
 Marti Walstad and Alaina Edwards
