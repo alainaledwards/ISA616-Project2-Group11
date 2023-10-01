@@ -9,8 +9,43 @@ We will explore what majors have the best/worst placement results in terms of pe
 Marti Walstad and Alaina Edwards
 
 ## Business Value Proposition
-insert bvp here
-
+1. Define the client or audience for your data analysis solution.
+  Our client for this project is Kirk Bogard, Associate Vice President for Development and External Relations in FSB.
+2. Define the client jobs.  What jobs are your clients trying to get done.  Use a separate bullet point for each job you intend to help your client get done.
+  • Inform FSB rankings
+  • Make case for admission (showing parents and students the placement reults through percentages and salary levels)
+  • Attracting other companies to recruit from FSB
+  • FSB Brand Management -- evidence to support claims made
+  • Show which majors have the best / worst placement results in terms of percentages
+  • Show which majors have best / worst placement results in terms of salary levels
+3. Add pains.  What are the pains before, during, and after your client is trying to get their jobs done?  Create a bullet point for every specific pain.
+  • Before:
+      • Students not filling out survey to get information
+  • During:
+      • Inputation errors -- missing variables (average salaries: student adding salary to survey vs external relations have to find salary online)
+  • After:
+      • Not having enough support and evidence to back up brand management claims
+      • Lacking information to recruit prospective students into certain FSB
+4. Describe your intended solution.  Give a bullet point for each major element of your product or solution.
+  Our intended solution is a dashboard showing statistics with FSB majors best / worst placements, specifically percentages and salary levels.
+  • Using Student Success data from 2019-2021
+  • Missing data will be filled in (missing salaries)
+  • Give statistics to be used in marketing that will be appealing to future prospective students about FSB majors
+5. What are the pain killers from your solution? You should be able to map a pain killer to a client pain.
+  • Using national averages and public data to input missing salary values
+  • Imrpove prospective student recruitment
+  • Using salary statistics to back up our Top 10 ranking for ROI claim
+  • Having the data avaliable to support any other brand management claims
+6. Add gains.  What else might your solution deliver that will surprise or benefit your client above and beyond simply killing their pain?
+  • Guide future marketing programs -- finding more data to support future rankings or statistics
+  • Strengthen relationships with companies who currently recruit out of FSB -- proving our continued success to encourage companies to keep returning to Miami career fairs, etc.
+  • Evidence to show Covid year didn't affect students post-grad placements
+7. What are the gain creators?   You should be able to map a gain creator to a client gain.
+  • Student salary and major statistics guiding brand management and marketing 
+  • Generating compelling statistics to best market to prospective student and parents based on major focus
+  • Learning about FSB strengths through exploring covid data -- data didn't change through this year
+    • We can use this internally to learn what recruiting works best
+    • Helps strengthen company relationships and show to prospective students that even during Covid FSB students were still placing well in terms of percentages and salary levels
 ## Project Overview
 
 Annually, the FSB conducts a senior survey of graduates to learn of their employment status.  In addition, information is verified using LinkedIn and employer survey information.  The data you are provided ('FSB_BI_Survey_2019_2021.rds') contains data on graduates for 2019, 2020, and 2021.  The data are merged from two sources:  the senior survey, and data from the Miami University database.  
