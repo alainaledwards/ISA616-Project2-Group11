@@ -16,7 +16,7 @@ Marti Walstad and Alaina Edwards
   Our client for this project is Kirk Bogard, Associate Vice President for Development and External Relations in FSB.
 2. Define the client jobs.  What jobs are your clients trying to get done.  Use a separate bullet point for each job you intend to help your client get done.
   *  Inform FSB rankings
-  * Make case for admission (showing parents and students the placement reults through percentages and salary levels)
+  *  Make case for admission (showing parents and students the placement reults through percentages and salary levels)
   • Attracting other companies to recruit from FSB
   • FSB Brand Management -- evidence to support claims made
   • Show which majors have the best / worst placement results in terms of percentages
