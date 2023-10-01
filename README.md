@@ -30,7 +30,7 @@ Marti Walstad and Alaina Edwards
         *  Not having enough support and evidence to back up brand management claims
         * Lacking information to recruit prospective students into certain FSB
 5. Describe your intended solution.  Give a bullet point for each major element of your product or solution.
-    Our intended solution is a dashboard showing statistics with FSB majors best / worst placements, specifically percentages and salary levels.
+      * Our intended solution is a dashboard showing statistics with FSB majors best / worst placements, specifically percentages and salary levels.
       *  Using Student Success data from 2019-2021
       *  Missing data will be filled in (missing salaries)
       *  Give statistics to be used in marketing that will be appealing to future prospective students about FSB majors
