@@ -13,7 +13,7 @@ Marti Walstad and Alaina Edwards
 ![BVP - Student Sucess](https://github.com/alainaledwards/ISA616-Project2-Group11/assets/146125942/55de55b1-3225-4caa-b900-76ae07b2981d)
 
 1. Define the client or audience for your data analysis solution.
-    Our client for this project is Kirk Bogard, Associate Vice President for Development and External Relations in FSB.
+        Our client for this project is Kirk Bogard, Associate Vice President for Development and External Relations in FSB.
 2. Define the client jobs.  What jobs are your clients trying to get done.  Use a separate bullet point for each job you intend to help your client get done.
     *  Inform FSB rankings
     *  Make case for admission (showing parents and students the placement reults through percentages and salary levels)
