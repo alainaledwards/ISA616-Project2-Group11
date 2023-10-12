@@ -1,0 +1,415 @@
+---
+title: "FSB Student Success"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: "Marti Walstad and Alaina Edwards"
+format: 
+  html:
+    toc: true
+    toc-location: left
+    toc-expand: true
+    code-tools: true 
+    code-fold: true
+    code-overflow: scroll
+    self-contained: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#package initialization
+rm(list = ls()) # clear global environment
+graphics.off() # close all graphics
+if(require(pacman)==FALSE) install.packages("pacman")
+pacman::p_load(#DataExplorer, # For explorer and cleaning data by visualizing missing values.
+               gptstudio,#For coding assistance
+               httr, # For downloading the data from the UCI
+               tidyverse, # For data manipulation
+               corrplot, # for heatmaps
+               DataExplorer, #for exploring data
+               skimr # for nice summary of data
+               ) # For creating dummy variables of categorical variables automatically.)
+```
+
+## Business Value Proposition
+
+
+
+1.  Define the client or audience for your data analysis solution.
+
+-   Our client for this project is Kirk Bogard, Associate Vice President
+    for Development and External Relations in FSB.
+
+2.  Define the client jobs. What jobs are your clients trying to get
+    done. Use a separate bullet point for each job you intend to help
+    your client get done.
+
+-   Inform FSB rankings
+-   Make case for admission (showing parents and students the placement
+    reults through percentages and salary levels)
+-   Attracting other companies to recruit from FSB
+-   FSB Brand Management -- evidence to support claims made
+-   Show which majors have the best / worst placement results in terms
+    of percentages
+-   Show which majors have best / worst placement results in terms of
+    salary levels
+
+3.  Add pains. What are the pains before, during, and after your client
+    is trying to get their jobs done? Create a bullet point for every
+    specific pain.
+
+-   Before:
+    -   Client stated students not filling out survey to get information
+        was a pain.
+-   During:
+    -   Inputation errors -- missing variables (average salaries:
+        student adding salary to survey vs external relations have to
+        find salary online)
+-   After:
+    -   Not having enough support and evidence to back up brand
+        management claims (Top 10 ranking for ROI)
+    -   Lacking information to best recruit prospective students into
+        certain FSB programs
+
+4.  Describe your intended solution. Give a bullet point for each major
+    element of your product or solution.
+
+-   Our intended solution is a dashboard showing statistics with FSB
+    majors best / worst placements, specifically percentages and salary
+    levels.
+-   Using Student Success data from 2019-2021
+-   Missing data will be filled in (missing salaries)
+-   Give statistics to be used in marketing that will be appealing to
+    future prospective students about FSB majors
+
+5.  What are the pain killers from your solution? You should be able to
+    map a pain killer to a client pain.
+
+-   Using national averages and public data to input missing salary
+    values -- external relations won't have to spend time searching for
+    missing data
+-   Improve prospective student recruitment -- find data to use in
+    marketing based on the specific majors
+-   Using salary statistics to back up our Top 10 ranking for ROI claim
+-   Having the data avaliable to support any other brand management
+    claims
+
+6.  Add gains. What else might your solution deliver that will surprise
+    or benefit your client above and beyond simply killing their pain?
+
+-   Guide future marketing programs -- finding more data to support
+    future rankings or statistics
+-   Strengthen relationships with companies who currently recruit out of
+    FSB -- proving our continued success to encourage companies to keep
+    returning to Miami career fairs, etc.
+-   Evidence to show Covid year didn't affect students post-grad
+    placements
+
+7.  What are the gain creators? You should be able to map a gain creator
+    to a client gain.
+
+-   Student salary and major statistics guiding brand management and
+    marketing
+-   Generating compelling statistics to best market to prospective
+    student and parents based on major focus
+-   Learning about FSB strengths through exploring Covid data -- data
+    didn't change through this year
+-   We can use this internally to learn what recruiting works best -
+    Helps strengthen company relationships and show to prospective
+    students that even during Covid FSB students were still placing well
+    in terms of percentages and salary levels
+
+## Project Overview
+
+Annually, the FSB conducts a senior survey of graduates to learn of
+their employment status. In addition, information is verified using
+LinkedIn and employer survey information. The data you are provided
+('FSB_BI_Survey_2019_2021.rds') contains data on graduates for 2019,
+2020, and 2021. The data are merged from two sources: the senior survey,
+and data from the Miami University database.
+
+The data are anonymized, however it is possible that if you look hard
+enough, you can identify students. You are bound, ethically not to do
+so. It is a strict ethical code that you will not discuss individual
+data points with ANYONE except for me and your team. Failure to comply
+with this code of ethics will result in a failing grade in the course.
+
+## Data Sources
+
+You have three years of data representing FSB graduates, including
+graduates in 2019, 2020, and 2021. The dataset provided had 42
+variables. The source is either derived by me during data
+cleaning/merging, from the Oracle Business Intelligence Enterprise
+Edition (OBIEE) maintained by Miami adminsitration, or from the self
+reported senior survey. I have cleaned and merged the files into one
+file.
+
+1.  nmajor: numeric,derived, the number of majors
+2.  major1: text, OBIEE, first major
+3.  major 2: text, OBIEE, second major
+4.  BBRJ: binary, OBIEE, an attribute of a student, but we do not know
+    what this stands for
+5.  Business Direct Admit: binary, OBIEE, a direct admit to FSB as a
+    first year
+6.  Combined Cacc and Masters: binary, OBIEE, combined degree student
+7.  Dean's List: binary, OBIEE, achieve dean's list status at least once
+8.  First Generation College Stdnt: binary, OBIEE, first generation
+    student status
+9.  FSB Scholars: binary, OBIEE, FSB scholars program
+10. Honors Program: binary, OBIEE, member of University honors program
+11. President's list: binary, OBIEE, achieved president's list at least
+    once
+12. Study Abroud Courtesy Account: binary, OBIEE, do not know meaning
+13. Transfer Work: binary, OBIEE, do not know exact meaning
+14. Cum Laude: binary, OBIEE, graduated Cum Laude
+15. Magna Cum Laude: binary, OBIEE, graduated Magna Cum Laude
+16. Summa Cum Laude: binary, OBIEE, graduated Summa Cum Laude
+17. University Honors: binary, OBIEE, graduated with University Honors
+18. University Honors w/Distinction: binary, OBIEE, graduated with
+    University Honors with Distinction
+19. minor1: text, OBIEE, first listed minor
+20. minor2: text, OBIEE, second listed minor
+21. IPEDS.Race.Ethnicity: text, OBIEE, race/ethnicity
+22. Gender: text, OBIEE, sex
+23. GPA.Range: text, OBIEE, GPA within a .5 range
+24. Term.Code: numberic, OBIEE, First four digits are the physcal year
+    (beginning in July, e.g. July 2020 is FY 2021). Last two digits is
+    the term (10=fall, 15=winter, 20=spring, 30=summer).
+25. Year.x: text, derived, first four digits of Term.Code stored as a
+    character variable
+26. latin_honors: text, survey, latin honors designation
+27. survey_city: text, survey, student reported city in which their job
+    is located
+28. survey_company: text, survey, student reported company in which they
+    accepted a job
+29. survey_deptfunc: text, survey, student reported job function
+30. survey_gradprogram: text, survey, student reported graduate program
+    they will be attending
+31. survey_gradschool: text, survey, stuent reported graduate school
+    they will be attending
+32. survey_internfour: text, survey, student reported fourth internship
+    they held during college
+33. survey_internthree: text, survey, student reported third internship
+    they held during college
+34. survey_interntwo: text, survey, student reported second internship
+    they held during college
+35. survey_internone: text, survey, student reported first internship
+    they held during college
+36. Survey_internships: text, survey, Student reported number of
+    internships they held during college
+37. survey_offers: text, survey, student reported number of offers for
+    full time employment received
+38. survey_plans: text, survey, student reported plans after graduation
+39. survey_pref_field: text, survey, student reported whether working in
+    preferred field
+40. survey_pref_loc: text, survey, student reported whether working in
+    preferred location
+41. survey_salary: numeric, survey, student reported salary
+42. survey_state: text, survey, student reported state in which job is
+    located
+## Session Information
+```{r}
+sessionInfo()
+
+#library(checkpoint)
+#checkpoint(snapshot_date = "2023-10-12")
+```
+
+## Import Data and Load Libaries
+
+```{r}
+# Read in the dataset
+data <- readRDS("FSB_BI_Survey_2019_2021.rds")
+
+# Check if the 'data' directory exists in the current working directory
+if (!dir.exists("data")) {
+  # Create the 'data' directory if it doesn't exist
+  dir.create("data")
+}
+
+# Define the location where the dataset will be saved
+destination_zip <- paste0(getwd(),"/FSB_BI_Survey_2019_2021.rds")
+```
+
+```{r}
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+# View the first few rows of the dataset to understand its structure
+knitr::kable(data[1:5, ], "pipe")
+```
+
+## Remove Unnecessary Columns
+We removed the following variables from our dataframe, as they did not add value for our question or were not needed:
+BBRJ 
+Business Direct Admit: 
+Combined Bacc and Masters 
+Dean's List 
+FSB Scholars 
+Study Abroad Courtesy Account
+President's List 
+Transfer Work (Pre-Banner) 
+Cum Laude 
+Magna Cum Laude
+Summa Cum Laude 
+University Honors 
+UniversityHonors w/Distinction 
+minor2--chose to focus only on primary minor
+latin_honors 
+survey_city 
+survey_company 
+survey_pref_field
+survey_pref_loc 
+survey_state 
+nmajor --only using major1
+major2--chose to focus on primary major
+Term.Code--using year instead
+
+```{r}
+# Remove unnecessary columns
+
+data <- data %>%
+  select(-`BBRJ`, -`Business Direct Admit`, -`Combined Bacc and Masters`, -`Combined Bacc and Masters`, -`Dean's List`, -`FSB Scholars`, -`Study Abroad Courtesy Account`, -`President's List`, -`Transfer Work (Pre-Banner)`,
+ -`Cum Laude`, -`Magna Cum Laude`, -`Summa Cum Laude`, -`University Honors`, -`UniversityHonors w/Distinction`, -`minor2`, -`latin_honors`, -`survey_city`, -`survey_company`, -`survey_pref_field`, -`survey_pref_loc`, -`survey_state`, -`nmajor`, -`major2`, -`Term.Code`)
+```
+
+## Explore Missing Data
+
+The graph we created illustrates the variables with missing data. From this we were able to determine what variables needed attention to fix the missing data. Using the graph, we determined to remove three of the variables that were missing >50% of the data and wouldn't add any value to creating our solution.
+
+```{r}
+
+missing_counts <- sapply(data, function(x) sum(is.na(x)))
+
+# Create a data frame for visualization
+missing_data_df <- data.frame(
+  Variable = names(data),
+  MissingCount = missing_counts
+)
+
+# Sort the data frame by missing counts
+missing_data_df <- missing_data_df[order(-missing_data_df$MissingCount), ]
+missing_data_df <- subset(missing_data_df, MissingCount > 0)
+missing_data_df
+
+
+# Create a bar chart using ggplot2
+ggplot(missing_data_df, aes(x = Variable, y = MissingCount)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(
+    title = "Missing Data Bar Chart",
+    x = "Variable",
+    y = "Missing Count"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+## save image
+ggsave("missing_data_df.pdf")
+write_csv(missing_data_df,"missing_data_df.csv")
+```
+
+## Handle Missing Variables
+The following variables were dropped:
+survey_gradprogram, survey_gradschool,survey_deptfunc as each had over 3000 missing values out of 3235. We determined this from our graph above.  
+
+Survey_internships had multiple values that were missing, but we noticed that some were incorrect.  Students had internships listed, but this column was empty. To fix this we computed if the student listed an internship under the four internship columns, this column would count that to fill in. (MUST DO)
+
+We imputed intern one,two,three,four as N/A if there were missing values as most students didn't have four different internships.
+We imputed survey_offers as 0 if it was missing as we assumed they received zero offers.
+Finally, we also imputed survey_plans to N/A when it was missing values.
+
+Since our problem concerns salary, we had to find a way to fix the over 50% missing values.  First, we tried to impute mean, but realized this wouldn't work with over 1500 missing values.  Ultimately, we decided to drop all the rows that didn't give us a salary as this was the best solution we came up with.
+
+```{r}
+## drop gradschool, grad_program, deptfunc large counts of missing variables
+data <- data %>%
+  select(-`survey_gradprogram`, -`survey_gradschool` , -`survey_deptfunc`)
+
+
+#calculate missing values for survey_internships
+data$survey_internships <- ifelse(is.na(data$survey_internships), 0, data$survey_internships)
+
+#Potential Code to fix survey_internship instead of the above code
+#data$survey_internships <- ifelse(is.na(data$survey_internships) & !is.na(data$survey_internfour), 4, NA)
+#data$survey_internships <- ifelse(is.na(data$survey_internships) & !is.na(data$survey_internthree), 3, NA)
+#data$survey_internships <- ifelse(is.na(data$survey_internships) & !is.na(data$survey_interntwo), 2, NA)
+#data$survey_internships <- ifelse(is.na(data$survey_internships) & !is.na(data$survey_internone), 1, 0)
+
+## impute missing for intern1,2,3,4 to "N/A"
+data$survey_internone <- ifelse(is.na(data$survey_internone), "N/A", data$survey_internone)
+data$survey_interntwo <- ifelse(is.na(data$survey_interntwo), "N/A", data$survey_interntwo)
+data$survey_internthree <- ifelse(is.na(data$survey_internthree), "N/A", data$survey_internthree)
+data$survey_internfour <- ifelse(is.na(data$survey_internfour), "N/A", data$survey_internfour)
+
+data$survey_offers <- ifelse(is.na(data$survey_offers), 0, data$survey_offers)
+
+data$survey_plans <- ifelse(is.na(data$survey_plans), "N/A", data$survey_plans)
+
+data <- data[complete.cases(data$survey_salary), ]
+
+```
+
+## Rename Columns
+
+We renamed our 16 variables we kept to have the same name formatting allowing easier readability.
+
+Our current variables with the renamed columns are:
+
+1. Major: text, OBIEE, first major
+2. FirstGen: binary, OBIEE, first generation student status
+3. Honors: binary, OBIEE, member of University honors program
+4. Minor: text, OBIEE, first listed minor
+5. RaceEthnicity: text, OBIEE, race/ethnicity
+6. Gender: text, OBIEE, sex
+7. GPARange: text, OBIEE, GPA within a .5 range
+8. Year: text, derived, first four digits of Term.Code stored as a
+    character variable
+9. InternFour: text, survey, student reported fourth internship
+    they held during college
+10. InternThree: text, survey, student reported third internship
+    they held during college
+11. InternTwo: text, survey, student reported second internship
+    they held during college
+12. InternOne: text, survey, student reported first internship
+    they held during college
+13. InternshipCount: text, survey, Student reported number of
+    internships they held during college
+14. OfferCount: text, survey, student reported number of offers for
+    full time employment received
+15. Plans: text, survey, student reported plans after graduation
+16. Salary: numeric, survey, student reported salary
+```{r}
+# Rename columns for clarity
+data <- data %>%
+  rename(Major = major1, Minor = minor1, RaceEthnicity = IPEDS.Race.Ethnicity, Year = year.x, GPARange= GPA.Range, InternFour = survey_internfour, InternThree = survey_internthree, InternTwo = survey_interntwo, InternOne = survey_internone, InternshipCount = survey_internships, OfferCount = survey_offers, Plans = survey_plans, Salary = survey_salary, Honors = `Honors Program`, FirstGen = `First Generation College Stdnt`)
+```
+
+
+```{r}
+knitr::kable(data[1:5, ], "pipe")
+```
+
+```
+## Reorder Columns
+
+We reordered the columns in a more logical sense, allowing the intern 1,2,3,4 to now be in order beginning with plans and internshipCount.
+
+```{r}
+
+data <- data %>%
+  select(Major, Minor, Honors, GPARange, Gender, RaceEthnicity, FirstGen, Year, Plans, InternshipCount, InternOne, InternTwo, InternThree, InternFour, OfferCount, Salary)
+
+```
+
+## Verify Cleaned Data, Export as cleaned CSV file
+
+Finally, we were able to verify our cleaned data and exported it to a CSV file ready for the next step.
+
+```{r}
+write.csv(data, "cleaned_FSB_Student_Success", row.names = FALSE)
+knitr::kable(data[1:5, ], "pipe")
+```
