@@ -34,7 +34,7 @@ pacman::p_load(#DataExplorer, # For explorer and cleaning data by visualizing mi
 
 ## Business Value Proposition
 
-
+![](BVP - Student Sucess.png)
 
 1.  Define the client or audience for your data analysis solution.
 
