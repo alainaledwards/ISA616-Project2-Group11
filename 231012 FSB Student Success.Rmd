@@ -393,7 +393,6 @@ data <- data %>%
 knitr::kable(data[1:5, ], "pipe")
 ```
 
-```
 ## Reorder Columns
 
 We reordered the columns in a more logical sense, allowing the intern 1,2,3,4 to now be in order beginning with plans and internshipCount.
