@@ -21,7 +21,7 @@ pacman::p_load(tidyverse, #for data manipulation
                )
 
 #read in data
-data=read.csv("cleaned_FSB_Student_Success.csv")
+data= cleaned_FSB_Student_Success
 ```
 
 
