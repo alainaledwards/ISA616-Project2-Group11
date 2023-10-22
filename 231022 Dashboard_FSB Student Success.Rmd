@@ -58,7 +58,12 @@ We also see to divide this data by exploring these outcomes with other variables
 ### Salary By Major
 
 ```{r, echo = FALSE}
-
+p = ggplot(, aes(x=Major))+
+  geom_bar(color="deeppink", fill = "deeppink")+
+  xlab("Major")+
+  ylab("Average Salary")+
+  theme_bw()
+ggplotly(p)
 ```
 
 ### First Gen Status, Salary by Major
