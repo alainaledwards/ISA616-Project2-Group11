@@ -1,0 +1,100 @@
+---
+title: "FSB Student Success Dashboard"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: "Marti Walstad and Alaina Edwards"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+#runtime: shiny
+---
+
+```{r setup, include=FALSE,echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE,message=FALSE,warning=FALSE)
+
+#package intialization
+if(require(pacman)==FALSE) install.packages("pacman")
+pacman::p_load(tidyverse, #for data manipulation
+               plotly, #for interactive plots
+               flexdashboard, #to make a dashboard
+               fontawesome, #for icons
+               DT #for better tables
+               )
+
+#read in data
+data=read.csv("cleaned_FSB_Student_Success.csv")
+```
+
+
+
+# Student Success Overview {data-orientation=columns}
+
+### Data Exploration Overview
+
+Data exploration includes creating this dashboard to answer Kirk Bogard's questions about student placement information. Specifically, the question we seek to answer is: 
+
+**What majors have the best / worst placement results in terms of salary levels?**
+
+We have cleaned the data and kept variables helpful to our exploration from the given Student Success data from 2019-2021. We aim to provide statistics to be used in marketing that will be appealing to future prospective students about FSB majors as well as inform FSB rankings and attract and maintain relationship with companies recruiting from FSB. Our goal is to support overall FSB Brand Management. 
+
+### Written Insights
+
+Through this dashboard, we have graphically represented average salary outcome by major with a bar chart. 
+
+We also see to divide this data by exploring these outcomes with other variables as well. These factors provide more detail into salary outcomes and student major choices. We have created bar charts of average salary by major, organized by: 
+
+**1) First Generation Student Status**
+
+**2) Honor Student Status**
+
+**3) Declared Minor**
+
+**4) Year**
+
+
+# Salary Results with Factors {data-orientation=columns}
+## row {data-height=600}
+
+
+### Salary By Major
+
+```{r, echo = FALSE}
+
+```
+
+### First Gen Status, Salary by Major
+
+```{r,echo=FALSE}
+
+```   
+ 
+### Honor Student Status, Salary by Major
+    
+```{r,echo=FALSE}
+
+```
+
+
+## row {data-height=600}
+
+### Salary by Declared Minor
+
+
+```{r,echo=FALSE}
+
+```
+
+
+# Salary Results {data-orientation=columns}
+
+## Column {data-width=500}
+
+### Salary by Major, by Count of Offers
+```{r}
+
+```
+
+### Salary by Major, by Year
+```{r}
+
+```
+
