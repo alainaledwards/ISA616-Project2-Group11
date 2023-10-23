@@ -7,6 +7,15 @@ output:
     orientation: rows
 #runtime: shiny
 ---
+<style>                     
+.navbar {
+  background-color:#545454;
+  border-color:black;
+}
+.navbar-brand {
+color:white!important;
+}
+</style>   
 
 ```{r setup, include=FALSE,echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE,message=FALSE,warning=FALSE)
@@ -21,12 +30,14 @@ pacman::p_load(tidyverse, #for data manipulation
                )
 
 #read in data
-data= cleaned_FSB_Student_Success
+data=readRDS("cleaned_FSB_Student_Success")
 ```
 
 
 
 # Student Success Overview {data-orientation=columns}
+
+## row {data-height=600}
 
 ### Data Exploration Overview
 
@@ -34,11 +45,11 @@ Data exploration includes creating this dashboard to answer Kirk Bogard's questi
 
 **What majors have the best / worst placement results in terms of salary levels?**
 
-We have cleaned the data and kept variables helpful to our exploration from the given Student Success data from 2019-2021. We aim to provide statistics to be used in marketing that will be appealing to future prospective students about FSB majors as well as inform FSB rankings and attract and maintain relationship with companies recruiting from FSB. Our goal is to support overall FSB Brand Management. 
+We aim to provide statistics to be used in marketing that will be appealing to future prospective students about FSB majors as well as inform FSB rankings and attract and maintain relationship with companies recruiting from FSB. Our goal is to support overall FSB Brand Management. 
 
 ### Written Insights
 
-Through this dashboard, we have graphically represented average salary outcome by major with a bar chart. 
+Through this dashboard, we have graphically represented average salary outcome by major with a bar chart, and provided a count of total reponses by major to provide context. 
 
 We also see to divide this data by exploring these outcomes with other variables as well. These factors provide more detail into salary outcomes and student major choices. We have created bar charts of average salary by major, organized by: 
 
@@ -50,32 +61,103 @@ We also see to divide this data by exploring these outcomes with other variables
 
 **4) Year**
 
+## row {data-height=600}
+
+### Average Salary by Major
+```{r, echo = FALSE}
+sorted_data <- data %>%
+  group_by(MajorAbbr) %>%
+  summarize(AverageSalary = mean(Salary)) %>%
+  arrange(desc(AverageSalary))
+
+# Create the bar plot with sorted MajorAbbr
+p <- ggplot(sorted_data, aes(x = reorder(MajorAbbr, -AverageSalary), y = AverageSalary)) +
+  geom_bar(stat = 'identity', position = 'dodge', color = '#C3142D', fill = '#C3142D') +
+  xlab("Major") +
+  ylab("Average Salary") +
+  theme_bw()
+
+# Adjust the y-axis to show more values
+p <- p +
+  scale_y_continuous(breaks = seq(0, max(sorted_data$AverageSalary), by = 10000), labels = scales::dollar_format(prefix = "$"))
+
+# Convert to interactive plotly plot
+ggplotly(p)
+```
+### Number of Responses For Salary by Major
+
+```{r,echo=FALSE}
+p1 = ggplot(data, aes(reorder(MajorAbbr,MajorAbbr, function(x)-length(x))))+
+  geom_bar(color="#C3142D", fill = "#C3142D")+
+  xlab("Major")+
+  ylab("Number of Responses")+
+  theme_bw()
+ggplotly(p1)
+```
+
 
 # Salary Results with Factors {data-orientation=columns}
 ## row {data-height=600}
 
-
-### Salary By Major
-
-```{r, echo = FALSE}
-p = ggplot(, aes(x=Major))+
-  geom_bar(color="deeppink", fill = "deeppink")+
-  xlab("Major")+
-  ylab("Average Salary")+
-  theme_bw()
-ggplotly(p)
-```
-
 ### First Gen Status, Salary by Major
 
-```{r,echo=FALSE}
 
+```{r,echo=FALSE}
+sorted_data <- data %>%
+  group_by(MajorAbbr, FirstGen) %>%
+  summarize(AverageSalary = mean(Salary)) %>%
+  arrange(desc(AverageSalary))
+
+# Create a variable for the grouping of "FirstGen" and "Not FirstGen"
+sorted_data$Group <- factor(sorted_data$FirstGen, levels = c(1, 0), labels = c("First Gen", "Not First Gen"))
+
+# Create the clustered bar plot with sorted MajorAbbr
+p <- ggplot(sorted_data, aes(x = reorder(MajorAbbr, -AverageSalary), y = AverageSalary, fill = Group)) +
+  geom_bar(stat = 'identity', position = 'dodge', width = 0.5) +
+  xlab("Major") +
+  ylab("Average Salary") +
+  theme_bw() +
+  scale_fill_manual(values = c('First Gen' = "#C3142D", 'Not First Gen' = "#3A3B3C"))
+
+# Adjust the y-axis to show more values
+max_salary <- max(sorted_data$AverageSalary, na.rm = TRUE)  # Handle NA values
+if (is.finite(max_salary)) {
+  p <- p +
+    scale_y_continuous(breaks = seq(0, max_salary, by = 10000), labels = scales::dollar_format(prefix = "$"))
+}
+
+# Convert to interactive plotly plot
+ggplotly(p)  
 ```   
  
 ### Honor Student Status, Salary by Major
-    
-```{r,echo=FALSE}
 
+```{r,echo=FALSE}
+sorted_data <- data %>%
+  group_by(MajorAbbr, Honors) %>%
+  summarize(AverageSalary = mean(Salary)) %>%
+  arrange(desc(AverageSalary))
+
+# Create a variable for the grouping of "FirstGen" and "Not FirstGen"
+sorted_data$Group <- factor(sorted_data$Honors, levels = c(1, 0), labels = c("Honors", "Not Honors"))
+
+# Create the clustered bar plot with sorted MajorAbbr
+p <- ggplot(sorted_data, aes(x = reorder(MajorAbbr, -AverageSalary), y = AverageSalary, fill = Group)) +
+  geom_bar(stat = 'identity', position = 'dodge', width = 0.5) +
+  xlab("Major") +
+  ylab("Average Salary") +
+  theme_bw() +
+  scale_fill_manual(values = c('Honors' = "#C3142D", 'Not Honors' = "#3A3B3C"))
+
+# Adjust the y-axis to show more values
+max_salary <- max(sorted_data$AverageSalary, na.rm = TRUE)  # Handle NA values
+if (is.finite(max_salary)) {
+  p <- p +
+    scale_y_continuous(breaks = seq(0, max_salary, by = 10000), labels = scales::dollar_format(prefix = "$"))
+}
+
+# Convert to interactive plotly plot
+ggplotly(p) 
 ```
 
 
@@ -85,21 +167,104 @@ ggplotly(p)
 
 
 ```{r,echo=FALSE}
+sorted_data <- data %>%
+  group_by(Minor) %>%
+  summarize(AverageSalary = mean(Salary)) %>%
+  arrange(desc(AverageSalary))
 
+# Create the bar plot with sorted MajorAbbr
+p <- ggplot(sorted_data, aes(x = reorder(Minor, -AverageSalary), y = AverageSalary)) +
+  geom_bar(stat = 'identity', position = 'dodge', color = '#C3142D', fill = '#C3142D', width = 0.5) +
+  xlab("Minor") +
+  ylab("Average Salary") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate labels by 45 degrees
+
+
+# Adjust the y-axis to show more values
+p <- p +
+  scale_y_continuous(breaks = seq(0, max(sorted_data$AverageSalary), by = 10000), labels = scales::dollar_format(prefix = "$"))
+
+# Convert to interactive plotly plot
+ggplotly(p)
 ```
 
+# Salary by Year {data-orientation=columns}
+## Column {data-width=400}
+### 2019
+```{r,echo=FALSE}
+filtered_data <- data[data$Year == 2019, ]
 
-# Salary Results {data-orientation=columns}
 
-## Column {data-width=500}
+sorted_data <- filtered_data %>%
+  group_by(MajorAbbr) %>%
+  summarize(AverageSalary = mean(Salary)) %>%
+  arrange(desc(AverageSalary))
 
-### Salary by Major, by Count of Offers
-```{r}
+# Create the bar plot with sorted MajorAbbr
+p <- ggplot(sorted_data, aes(x = reorder(MajorAbbr, -AverageSalary), y = AverageSalary)) +
+  geom_bar(stat = 'identity', position = 'dodge', color = '#C3142D', fill = '#C3142D') +
+  xlab("Major") +
+  ylab("Average Salary") +
+  theme_bw()
 
+# Adjust the y-axis to show more values
+p <- p +
+  scale_y_continuous(breaks = seq(0, 80000, by = 10000), labels = scales::dollar_format(prefix = "$"))
+
+# Convert to interactive plotly plot
+ggplotly(p)
 ```
+## Column {data-width=400}
 
-### Salary by Major, by Year
-```{r}
+### 2020
+```{r,echo=FALSE}
+filtered_data <- data[data$Year == 2020, ]
 
+
+sorted_data <- filtered_data %>%
+  group_by(MajorAbbr) %>%
+  summarize(AverageSalary = mean(Salary)) %>%
+  arrange(desc(AverageSalary))
+
+# Create the bar plot with sorted MajorAbbr
+p <- ggplot(sorted_data, aes(x = reorder(MajorAbbr, -AverageSalary), y = AverageSalary)) +
+  geom_bar(stat = 'identity', position = 'dodge', color = '#C3142D', fill = '#C3142D') +
+  xlab("Major") +
+  ylab("Average Salary") +
+  theme_bw()
+
+# Adjust the y-axis to show more values
+p <- p +
+  scale_y_continuous(breaks = seq(0, 80000, by = 10000), labels = scales::dollar_format(prefix = "$"))
+
+# Convert to interactive plotly plot
+ggplotly(p)
+```
+## Column {data-width=400}
+
+### 2021
+```{r,echo=FALSE}
+filtered_data <- data[data$Year == 2021, ]
+
+
+sorted_data <- filtered_data %>%
+  group_by(MajorAbbr) %>%
+  summarize(AverageSalary = mean(Salary)) %>%
+  arrange(desc(AverageSalary))
+
+# Create the bar plot with sorted MajorAbbr
+p <- ggplot(sorted_data, aes(x = reorder(MajorAbbr, -AverageSalary), y = AverageSalary)) +
+  geom_bar(stat = 'identity', position = 'dodge', color = '#C3142D', fill = '#C3142D') +
+  xlab("Major") +
+  ylab("Average Salary") +
+  theme_bw()
+
+# Adjust the y-axis to show more values
+p <- p +
+  scale_y_continuous(breaks = seq(0,80000, by = 10000), labels = scales::dollar_format(prefix = "$"))
+
+# Convert to interactive plotly plot
+ggplotly(p)
 ```
 

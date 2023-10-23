@@ -388,6 +388,22 @@ data <- data %>%
   rename(Major = major1, Minor = minor1, RaceEthnicity = IPEDS.Race.Ethnicity, Year = year.x, GPARange= GPA.Range, InternFour = survey_internfour, InternThree = survey_internthree, InternTwo = survey_interntwo, InternOne = survey_internone, InternshipCount = survey_internships, OfferCount = survey_offers, Plans = survey_plans, Salary = survey_salary, Honors = `Honors Program`, FirstGen = `First Generation College Stdnt`)
 ```
 
+```{r}
+major_abbreviations <- data.frame(
+  Major = c("Finance", "Marketing", "Accountancy", "Management and Leadership",
+            "Human Capital Mgmt& Leadership", "Business Economics", 
+            "Information Systems", "Supply Chain & Operations Mgmt", 
+            "Business Analytics", "Entrepreneurship"),
+  MajorAbbr = c("FIN", "MKT", "ACC", "MGT", "HCML", "ECON", "IS", "SCOM", "BA", "ESP"))
+  
+data <- data %>%
+  left_join(major_abbreviations, by = "Major")
+```
+
+```{r}
+head(data)
+```
+
 
 ```{r}
 knitr::kable(data[1:5, ], "pipe")
@@ -400,7 +416,7 @@ We reordered the columns in a more logical sense, allowing the intern 1,2,3,4 to
 ```{r}
 
 data <- data %>%
-  select(Major, Minor, Honors, GPARange, Gender, RaceEthnicity, FirstGen, Year, Plans, InternshipCount, InternOne, InternTwo, InternThree, InternFour, OfferCount, Salary)
+  select(MajorAbbr, Major, Minor, Honors, GPARange, Gender, RaceEthnicity, FirstGen, Year, Plans, InternshipCount, InternOne, InternTwo, InternThree, InternFour, OfferCount, Salary)
 
 ```
 
