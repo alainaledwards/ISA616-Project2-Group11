@@ -267,4 +267,32 @@ p <- p +
 # Convert to interactive plotly plot
 ggplotly(p)
 ```
+# Analysis Insights {data-orientation=columns}
 
+## Column {data-width=400}
+
+### Salary by Major Insights
+Project Statement:
+
+**What majors have the best / worst placement results in terms of salary levels?**
+
+On average across the three years of data, **Business Analytics is the has the highest salary outcome with Information Systems closely behind**. When exploring the data by separate years, the two are similarly positioned in 2019 but switch in 2020 and 2021. The highest average salary was in Business Analytics in 2019 at a little above $70,000 and has decreased slightly since then to around 65,000. **ESP moved up in ranking every year**. It sat as the lowest average salary in 2019 and in 2021, was ranked 7th, with management and marketing consistently in the bottom four. 
+
+These statistics and graphs can be used to **support marketing and FSB Brand Management to future prospective students**. Specifically showing the continued successful outcomes of Business Analytics and Information Systems students can be used to attract and retain students in these areas. **Similarly, it can inform FSB rankings for majors such as Entrepreneurship which has continued to move up in average salary over three years**. The charts can help FSB find areas where we can add more companies recruiting from FSB, specifically to continue supporting Honors and First Gen Students to further improve their placements.
+
+
+## Column {data-width=400}
+
+### Salary by Factors Insights
+
+We added in other factors that may contribute to salary outcome to our initial question to help understand how salary by major are impacted by First Generation Student status, Honors student status, and minor.
+
+#### First Generation Student Salary by Major
+
+We found that first generation business analytics students had slightly better salary outcomes. However, first-gen Management students have significantly worse salary outcomes of about a $12,000 salary difference. **Most other majors had similarly salary outcomes for first gen and not first gen students.** 
+
+#### Honors Student Salary by Major
+Across all majors except management and Human Capital Management and Leadership, **Honors students had about a salary about $2,000 to $5,000 greater than their non honors counterparts**. However, there was a significant difference in Human Capital Management and Leadership with Non Honors having a salary $12,800 greater average salary than Honors. 
+
+#### Salary Outcome by Minor
+While our main goal was to explore salary outcome by major, we also understand that having a well rounded education is very important to Farmer School of Business and students are required to declare and thematic sequence or minor along with their chosen major. Therefore we graphed average salary by minor to inform students and departments on successful minors for business students. **Information Security, Accountancy, and Political Science were similarly ranked at the top of the average salary outcome with Health Related minors at the lowest**. While a minor does not impact salary outcome as much as a major might for students getting jobs in those areas, it helps us understand how business students are pairing their major and minor and salary outcome from that. 
