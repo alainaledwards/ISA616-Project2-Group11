@@ -401,7 +401,8 @@ data <- data %>%
 ```
 
 ```{r}
-head(data)
+data <- data[!is.na(as.integer(data$OfferCount)), ]
+
 ```
 
 
@@ -425,6 +426,6 @@ data <- data %>%
 Finally, we were able to verify our cleaned data and exported it to a CSV file ready for the next step.
 
 ```{r}
-write.csv(data, "cleaned_FSB_Student_Success", row.names = FALSE)
+saveRDS(data, "cleaned_FSB_Student_Success")
 knitr::kable(data[1:5, ], "pipe")
 ```
