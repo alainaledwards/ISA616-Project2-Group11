@@ -21,7 +21,11 @@ pacman::p_load(tidyverse, #for data manipulation
                )
 
 #read in data
+<<<<<<< Updated upstream
 #data=read.csv("cleaned_FSB_Student_Success.csv")
+=======
+data=read.csv("cleaned_FSB_Student_Success.csv")
+>>>>>>> Stashed changes
 ```
 
 
@@ -51,7 +55,11 @@ We also see to divide this data by exploring these outcomes with other variables
 **4) Year**
 
 
+<<<<<<< Updated upstream
 # Salary Results with Factors {data-orientation=columns}
+=======
+# Data Results {data-orientation=columns}
+>>>>>>> Stashed changes
 ## row {data-height=600}
 
 
@@ -84,6 +92,7 @@ We also see to divide this data by exploring these outcomes with other variables
 ```
 
 
+<<<<<<< Updated upstream
 # Salary Results {data-orientation=columns}
 
 ## Column {data-width=500}
@@ -98,3 +107,12 @@ We also see to divide this data by exploring these outcomes with other variables
 
 ```
 
+=======
+### Salary by Major, by Year
+
+    
+```{r,echo=FALSE}
+
+```
+   
+>>>>>>> Stashed changes

@@ -34,7 +34,7 @@ pacman::p_load(#DataExplorer, # For explorer and cleaning data by visualizing mi
 
 ## Business Value Proposition
 
-![](BVP - Student Sucess.png)
+![](images/BVP - Student Sucess.png)
 
 1.  Define the client or audience for your data analysis solution.
 
@@ -207,8 +207,8 @@ file.
     preferred location
 41. survey_salary: numeric, survey, student reported salary
 42. survey_state: text, survey, student reported state in which job is
-    located
-## Session Information
+    located \## Session Information
+
 ```{r}
 sessionInfo()
 
@@ -243,30 +243,16 @@ knitr::kable(data[1:5, ], "pipe")
 ```
 
 ## Remove Unnecessary Columns
-We removed the following variables from our dataframe, as they did not add value for our question or were not needed:
-BBRJ 
-Business Direct Admit: 
-Combined Bacc and Masters 
-Dean's List 
-FSB Scholars 
-Study Abroad Courtesy Account
-President's List 
-Transfer Work (Pre-Banner) 
-Cum Laude 
-Magna Cum Laude
-Summa Cum Laude 
-University Honors 
-UniversityHonors w/Distinction 
-minor2--chose to focus only on primary minor
-latin_honors 
-survey_city 
-survey_company 
-survey_pref_field
-survey_pref_loc 
-survey_state 
-nmajor --only using major1
-major2--chose to focus on primary major
-Term.Code--using year instead
+
+We removed the following variables from our dataframe, as they did not
+add value for our question or were not needed: BBRJ Business Direct
+Admit: Combined Bacc and Masters Dean's List FSB Scholars Study Abroad
+Courtesy Account President's List Transfer Work (Pre-Banner) Cum Laude
+Magna Cum Laude Summa Cum Laude University Honors UniversityHonors
+w/Distinction minor2--chose to focus only on primary minor latin_honors
+survey_city survey_company survey_pref_field survey_pref_loc
+survey_state nmajor --only using major1 major2--chose to focus on
+primary major Term.Code--using year instead
 
 ```{r}
 # Remove unnecessary columns
@@ -278,7 +264,11 @@ data <- data %>%
 
 ## Explore Missing Data
 
-The graph we created illustrates the variables with missing data. From this we were able to determine what variables needed attention to fix the missing data. Using the graph, we determined to remove three of the variables that were missing >50% of the data and wouldn't add any value to creating our solution.
+The graph we created illustrates the variables with missing data. From
+this we were able to determine what variables needed attention to fix
+the missing data. Using the graph, we determined to remove three of the
+variables that were missing \>50% of the data and wouldn't add any value
+to creating our solution.
 
 ```{r}
 
@@ -313,16 +303,28 @@ write_csv(missing_data_df,"missing_data_df.csv")
 ```
 
 ## Handle Missing Variables
-The following variables were dropped:
-survey_gradprogram, survey_gradschool,survey_deptfunc as each had over 3000 missing values out of 3235. We determined this from our graph above.  
 
-Survey_internships had multiple values that were missing, but we noticed that some were incorrect.  Students had internships listed, but this column was empty. To fix this we computed if the student listed an internship under the four internship columns, this column would count that to fill in. (MUST DO)
+The following variables were dropped: survey_gradprogram,
+survey_gradschool,survey_deptfunc as each had over 3000 missing values
+out of 3235. We determined this from our graph above.
 
-We imputed intern one,two,three,four as N/A if there were missing values as most students didn't have four different internships.
-We imputed survey_offers as 0 if it was missing as we assumed they received zero offers.
-Finally, we also imputed survey_plans to N/A when it was missing values.
+Survey_internships had multiple values that were missing, but we noticed
+that some were incorrect. Students had internships listed, but this
+column was empty. To fix this we computed if the student listed an
+internship under the four internship columns, this column would count
+that to fill in. (MUST DO)
 
-Since our problem concerns salary, we had to find a way to fix the over 50% missing values.  First, we tried to impute mean, but realized this wouldn't work with over 1500 missing values.  Ultimately, we decided to drop all the rows that didn't give us a salary as this was the best solution we came up with.
+We imputed intern one,two,three,four as N/A if there were missing values
+as most students didn't have four different internships. We imputed
+survey_offers as 0 if it was missing as we assumed they received zero
+offers. Finally, we also imputed survey_plans to N/A when it was missing
+values.
+
+Since our problem concerns salary, we had to find a way to fix the over
+50% missing values. First, we tried to impute mean, but realized this
+wouldn't work with over 1500 missing values. Ultimately, we decided to
+drop all the rows that didn't give us a salary as this was the best
+solution we came up with.
 
 ```{r}
 ## drop gradschool, grad_program, deptfunc large counts of missing variables
@@ -355,33 +357,35 @@ data <- data[complete.cases(data$survey_salary), ]
 
 ## Rename Columns
 
-We renamed our 16 variables we kept to have the same name formatting allowing easier readability.
+We renamed our 16 variables we kept to have the same name formatting
+allowing easier readability.
 
 Our current variables with the renamed columns are:
 
-1. Major: text, OBIEE, first major
-2. FirstGen: binary, OBIEE, first generation student status
-3. Honors: binary, OBIEE, member of University honors program
-4. Minor: text, OBIEE, first listed minor
-5. RaceEthnicity: text, OBIEE, race/ethnicity
-6. Gender: text, OBIEE, sex
-7. GPARange: text, OBIEE, GPA within a .5 range
-8. Year: text, derived, first four digits of Term.Code stored as a
+1.  Major: text, OBIEE, first major
+2.  FirstGen: binary, OBIEE, first generation student status
+3.  Honors: binary, OBIEE, member of University honors program
+4.  Minor: text, OBIEE, first listed minor
+5.  RaceEthnicity: text, OBIEE, race/ethnicity
+6.  Gender: text, OBIEE, sex
+7.  GPARange: text, OBIEE, GPA within a .5 range
+8.  Year: text, derived, first four digits of Term.Code stored as a
     character variable
-9. InternFour: text, survey, student reported fourth internship
-    they held during college
-10. InternThree: text, survey, student reported third internship
-    they held during college
-11. InternTwo: text, survey, student reported second internship
-    they held during college
-12. InternOne: text, survey, student reported first internship
-    they held during college
+9.  InternFour: text, survey, student reported fourth internship they
+    held during college
+10. InternThree: text, survey, student reported third internship they
+    held during college
+11. InternTwo: text, survey, student reported second internship they
+    held during college
+12. InternOne: text, survey, student reported first internship they held
+    during college
 13. InternshipCount: text, survey, Student reported number of
     internships they held during college
-14. OfferCount: text, survey, student reported number of offers for
-    full time employment received
+14. OfferCount: text, survey, student reported number of offers for full
+    time employment received
 15. Plans: text, survey, student reported plans after graduation
 16. Salary: numeric, survey, student reported salary
+
 ```{r}
 # Rename columns for clarity
 data <- data %>%
@@ -405,14 +409,14 @@ data <- data[!is.na(as.integer(data$OfferCount)), ]
 
 ```
 
-
 ```{r}
 knitr::kable(data[1:5, ], "pipe")
 ```
 
 ## Reorder Columns
 
-We reordered the columns in a more logical sense, allowing the intern 1,2,3,4 to now be in order beginning with plans and internshipCount.
+We reordered the columns in a more logical sense, allowing the intern
+1,2,3,4 to now be in order beginning with plans and internshipCount.
 
 ```{r}
 
@@ -423,7 +427,8 @@ data <- data %>%
 
 ## Verify Cleaned Data, Export as cleaned CSV file
 
-Finally, we were able to verify our cleaned data and exported it to a CSV file ready for the next step.
+Finally, we were able to verify our cleaned data and exported it to a
+CSV file ready for the next step.
 
 ```{r}
 saveRDS(data, "cleaned_FSB_Student_Success")
