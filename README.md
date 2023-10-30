@@ -81,15 +81,16 @@ There are three years of data representing FSB graduates, including graduates in
 4. 231011 FSB Student Success: Cleans data--import data and load variables, removes unecessary variables, explore missing data and handle this missing data, renames columns, reorders columns, verify cleaned data to export as RDS
 5. 231012 FSB Student Success: includes session information along with cleaning the data--allows reproducibility
 6. 231015 FSB Student Success: Dashboard template based on data insight question includes data exploration overview and written insights
-7. 231022 FSB Student Success: Final Dashboard with graphs to answer data insight question
-8. 231029 FSB Student Success: Final Dashboard with graphs to answer data insight question; includes our conclusions and insights taken from the graphs
-9. Analytics Class Project from Client: Project information--client, data insight questions
-10. FSB_BI_Survey_2019_2021: original data from FSB senior surveys
-11. ISA616-CareerProj: includes saved data used in process of cleaning and exporting to our final analysis
-12. README: contains BVP, data insight question, updated data source with variables, explanation of files
-13. Student Template for accessing Svc data:
-14. cleaned_FSB_Student_Success: file with final cleaned data
-15. missing_data_df: Shows variables with missing variables
+7. 231022 Dashboard FSB Student Success: Final Dashboard with graphs to answer data insight question
+8. 231029 Dashboard FSB Student Success: Final Dashboard with graphs to answer data insight question; includes our conclusions and insights taken from the graphs
+9. 231029 BVP and Data_FSB-Student Success: Includes BVP and all of our steps to reproducing and understanding our cleaning file
+10. Analytics Class Project from Client: Project information--client, data insight questions
+11. FSB_BI_Survey_2019_2021: original data from FSB senior surveys
+12. ISA616-CareerProj: includes saved data used in process of cleaning and exporting to our final analysis
+13. README: contains BVP, data insight question, updated data source with variables, explanation of files
+14. Student Template for accessing Svc data: rmd template
+15. cleaned_FSB_Student_Success: file with final cleaned data
+16. missing_data_df: Shows variables with missing variables
 
 ## Final Student Success Deliverable
 Our final dashboard delivered to Mr. Kirk Bogard addresses the pains and needs we stated for exploring what FSB majors have the best/worst placement in terms of percentages and salary levels. We were able to successfully determine what variables would work best in this solution, and clean the data based on this. We also renamed and reorderd variables to make our results more user friendly to our client. In our dashboard template we used our cleaned data to create graphs that meaningfully represented the solution to our data insight question. First, we created two graphs one to show the average salary by major and another to show the number of responses for salary by major. This second graph shows how data could be skewed based on the number of responses. Next, we used factors of First Generation Students, Honors, and Minor to show salaries based on major. Finally, we gave graphs on salary by major for each of the years, 2019-2021 that we had survey data from. Our graphs can provide meaningful statistics to be used in marketing that will be appealing to future prospective students, and also help inform FSB rankings. Using all of our graphs we are able to help address our client's needs and pains.  
