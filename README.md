@@ -52,53 +52,44 @@ Marti Walstad and Alaina Edwards
 
 ## Project Overview
 
-Annually, the FSB conducts a senior survey of graduates to learn of their employment status.  In addition, information is verified using LinkedIn and employer survey information.  The data you are provided ('FSB_BI_Survey_2019_2021.rds') contains data on graduates for 2019, 2020, and 2021.  The data are merged from two sources:  the senior survey, and data from the Miami University database.  
-
-The data are anonymized, however it is possible that if you look hard enough, you can identify students.  You are bound, ethically not to do so.  It is a strict ethical code that you will not discuss individual data points with ANYONE except for me and your team.  Failure to comply with this code of ethics will result in a failing grade in the course.  
+Annually, the FSB conducts a senior survey of graduates to learn of their employment status.  In addition, information is verified using LinkedIn and employer survey information.  The data provided ('FSB_BI_Survey_2019_2021.rds') contains data on graduates for 2019, 2020, and 2021.  The data are merged from two sources:  the senior survey, and data from the Miami University database.  
 
 ## Data Sources
 
-You have three years of data representing FSB graduates, including graduates in 2019, 2020, and 2021.  The dataset provided had 42 variables.  The source is either derived by me during data cleaning/merging, from the Oracle Business Intelligence Enterprise Edition (OBIEE) maintained by Miami adminsitration, or from the self reported senior survey.  I have cleaned and merged the files into one file.  
+You have three years of data representing FSB graduates, including graduates in 2019, 2020, and 2021.  The dataset provided had 42 variables.  The source is either derived by me during data cleaning/merging, from the Oracle Business Intelligence Enterprise Edition (OBIEE) maintained by Miami adminsitration, or from the self reported senior survey.  It was cleaned and merged the files into one file.  We took the 42 variables and cleaned them down to 16 variable that were most useful to our data insight question.  
 
-1.  nmajor: numeric,derived, the number of majors 
-2.  major1: text, OBIEE, first major
-3.  major 2: text, OBIEE, second major
-4.  BBRJ: binary, OBIEE, an attribute of a student, but we do not know what this stands for
-5.  Business Direct Admit: binary, OBIEE, a direct admit to FSB as a first year
-6.  Combined Cacc and Masters: binary, OBIEE, combined degree student
-7.  Dean's List: binary, OBIEE, achieve dean's list status at least once
-8.  First Generation College Stdnt: binary, OBIEE, first generation student status
-9.  FSB Scholars: binary, OBIEE, FSB scholars program
-10.  Honors Program: binary, OBIEE, member of University honors program
-11.  President's list: binary, OBIEE, achieved president's list at least once
-12.  Study Abroud Courtesy Account: binary, OBIEE, do not know meaning
-13.  Transfer Work: binary, OBIEE, do not know exact meaning
-14.  Cum Laude: binary, OBIEE, graduated Cum Laude
-15.  Magna Cum Laude: binary, OBIEE, graduated Magna Cum Laude
-16.  Summa Cum Laude: binary, OBIEE, graduated Summa Cum Laude
-17.  University Honors: binary, OBIEE, graduated with University Honors
-18.  University Honors w/Distinction: binary, OBIEE, graduated with University Honors with Distinction
-19.  minor1: text, OBIEE, first listed minor
-20.  minor2: text, OBIEE, second listed minor
-21.  IPEDS.Race.Ethnicity: text, OBIEE, race/ethnicity
-22.  Gender: text, OBIEE, sex
-23.  GPA.Range: text, OBIEE, GPA within a .5 range
-24.  Term.Code: numberic, OBIEE, First four digits are the physcal year (beginning in July, e.g. July 2020 is FY 2021).  Last two digits is the term (10=fall, 15=winter, 20=spring, 30=summer).
-25.  Year.x: text, derived, first four digits of Term.Code stored as a character variable
-26.  latin_honors: text, survey, latin honors designation
-27.  survey_city: text, survey, student reported city in which their job is located
-28.  survey_company: text, survey, student reported company in which they accepted a job
-29.  survey_deptfunc: text, survey, student reported job function
-30.  survey_gradprogram: text, survey, student reported graduate program they will be attending
-31.  survey_gradschool: text, survey, stuent reported graduate school they will be attending
-32.  survey_internfour: text, survey, student reported fourth internship they held during college
-33.  survey_internthree: text, survey, student reported third internship they held during college
-34.  survey_interntwo: text, survey, student reported second internship they held during college
-35.  survey_internone: text, survey, student reported first internship they held during college
-36.  Survey_internships: text, survey, Student reported number of internships they held during college
-37.  survey_offers: text, survey, student reported number of offers for full time employment received
-38.  survey_plans: text, survey, student reported plans after graduation
-39.  survey_pref_field: text, survey, student reported whether working in preferred field
-40.  survey_pref_loc: text, survey, student reported whether working in preferred location
-41.  survey_salary: numeric, survey, student reported salary
-42.  survey_state: text, survey, student reported state in which job is located
+1.  Major: text, OBIEE, first major
+2.  FirstGen: binary, OBIEE, first generation student status
+3.  Honors: binary, OBIEE, member of University honors program
+4.  Minor: text, OBIEE, first listed minor
+5.  RaceEthnicity: text, OBIEE, race/ethnicity
+6.  Gender: text, OBIEE, sex
+7.  GPARange: text, OBIEE, GPA within a .5 range
+8.  Year: text, derived, first four digits of Term.Code stored as a character variable
+9.  InternOne: text, survey, student reported first internship they held during college
+10. InternTwo: text, survey, student reported second internship they held during college
+11. InternThree: text, survey, student reported third internship they held during college
+12. InternFour: text, survey, student reported fourth internship they held during college
+13. InternshipCount: text, survey, Student reported number of internships they held during college
+14. OfferCount: text, survey, student reported number of offers for full time employment received
+15. Plans: text, survey, student reported plans after graduation
+16. Salary: numeric, survey, student reported salary
+
+## Contents of Folder
+1. .gitignore: ignores certain data that is listed
+2. 231003 FSB Student Success: Contains BVP and image, sets working directory and imports data, project overview, original data sources
+4. 231011 FSB Student Success: Cleans data--import data and load variables, removes unecessary variables, explore missing data and handle this missing data, renames columns, reorders columns, verify cleaned data to export as RDS
+5. 231012 FSB Student Success: includes session information along with cleaning the data--allows reproducibility
+6. 231015 FSB Student Success: Dashboard template based on data insight question includes data exploration overview and written insights
+7. 231022 FSB Student Success: Final Dashboard with graphs to answer data insight question
+8. 231029 FSB Student Success: Final Dashboard with graphs to answer data insight question; includes our conclusions and insights taken from the graphs
+9. Analytics Class Project from Client: Project information--client, data insight questions
+10. FSB_BI_Survey_2019_2021: original data from FSB senior surveys
+11. ISA616-CareerProj: includes saved data used in process of cleaning and exporting to our final analysis
+12. README: contains BVP, data insight question, updated data source with variables, explanation of files
+13. Student Template for accessing Svc data:
+14. cleaned_FSB_Student_Success: file with final cleaned data
+15. missing_data_df: Shows variables with missing variables
+
+## Final Student Success Deliverable
+Our final dashboard delivered to Mr. Kirk Bogard addresses the pains and need we stated for exploring what FSB majors have the best/worst placement in terms of percentages and salary levels.  We were able to successfully determine what variables would work best in this solution, and clean the data based on this.  We also renamed and reorderd variables to make our results more user friendly to our client. In our dashboard template we used our cleaned data to create graphs that meaningfully represented the solution to our data insight question. First, we created graphs to show the average salary by major and the number of responses for salary by major.  This graph also shows how data could be skewed based on the number of responses. Next, we used factors of First Generation Students, Honors, and Minor to show salaries based on major. Finally, we gave graphs on salary by major for each of the years, 2019-2021 that we had survey data from. Our graphs can provide meaningful statistics to be used in marketing that will be appealing to future prospective students about FSB majors. Using all of our graphs we are able to address our client's needs and pains.  
