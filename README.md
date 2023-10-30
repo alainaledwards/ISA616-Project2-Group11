@@ -56,7 +56,7 @@ Annually, the FSB conducts a senior survey of graduates to learn of their employ
 
 ## Data Sources
 
-There are three years of data representing FSB graduates, including graduates in 2019, 2020, and 2021.  The dataset provided had 42 variables.  The source is either derived by me during data cleaning/merging, from the Oracle Business Intelligence Enterprise Edition (OBIEE) maintained by Miami adminsitration, or from the self reported senior survey.  It was cleaned and merged the files into one file.  We took the 42 variables and cleaned them down to 16 variable that were the most useful to our data insight question.  
+There are three years of data representing FSB graduates, including graduates in 2019, 2020, and 2021.  The dataset provided had 42 variables.  The source is either derived by data cleaning/merging, from the Oracle Business Intelligence Enterprise Edition (OBIEE) maintained by Miami adminsitration, or from the self reported senior survey.  It was cleaned and merged the files into one file.  We took the 42 variables and cleaned them down to 16 variable that were the most useful to our data insight question.  
 
 1.  Major: text, OBIEE, first major
 2.  FirstGen: binary, OBIEE, first generation student status
